@@ -11,11 +11,7 @@ namespace WinCam
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Color Color { get; set; }
+        public Color Color { get; set; }=Color.Red;
 
-        public YoloLabeling()
-        {
-            Color = Color.Red;
-        }
     }
 }

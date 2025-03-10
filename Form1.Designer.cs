@@ -7,7 +7,6 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
 
         /// <summary>
@@ -31,63 +30,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-
+            pictureBox1 = new PictureBox();
+            btnStop = new Button();
+            btnDetect = new Button();
+            lblDetails = new Label();
+            btnStart = new Button();
+            btnCapture = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 480);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(12, 500);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(100, 40);
-            this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "Start Camera";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Location = new Point(15, 19);
+            pictureBox1.Margin = new Padding(4, 5, 4, 5);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(800, 749);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(130, 500);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(100, 40);
-            this.btnStop.TabIndex = 2;
-            this.btnStop.Text = "Stop Camera";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-
+            btnStop.Location = new Point(148, 781);
+            btnStop.Margin = new Padding(4, 5, 4, 5);
+            btnStop.Name = "btnStop";
+            btnStop.Size = new Size(125, 62);
+            btnStop.TabIndex = 2;
+            btnStop.Text = "Stop Camera";
+            btnStop.UseVisualStyleBackColor = true;
+            btnStop.Click += btnStop_Click;
+            // 
+            // btnDetect
+            // 
+            btnDetect.Location = new Point(148, 853);
+            btnDetect.Margin = new Padding(4, 5, 4, 5);
+            btnDetect.Name = "btnDetect";
+            btnDetect.Size = new Size(125, 62);
+            btnDetect.TabIndex = 3;
+            btnDetect.Text = "Detect";
+            btnDetect.UseVisualStyleBackColor = true;
+            btnDetect.Click += btnCapture_Click_1;
+            // 
+            // lblDetails
+            // 
+            lblDetails.AutoSize = true;
+            lblDetails.Location = new Point(345, 800);
+            lblDetails.Name = "lblDetails";
+            lblDetails.Size = new Size(33, 25);
+            lblDetails.TabIndex = 4;
+            lblDetails.Text = "---";
+            // 
+            // btnStart
+            // 
+            btnStart.Location = new Point(15, 781);
+            btnStart.Margin = new Padding(4, 5, 4, 5);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(125, 62);
+            btnStart.TabIndex = 1;
+            btnStart.Text = "Start Camera";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnStart_Click;
+            // 
+            // btnCapture
+            // 
+            btnCapture.Location = new Point(15, 853);
+            btnCapture.Margin = new Padding(4, 5, 4, 5);
+            btnCapture.Name = "btnCapture";
+            btnCapture.Size = new Size(125, 62);
+            btnCapture.TabIndex = 5;
+            btnCapture.Text = "Capture";
+            btnCapture.UseVisualStyleBackColor = true;
+            btnCapture.Click += btnCapture_Click;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 550);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "Form1";
-            this.Text = "Camera App";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(838, 1050);
+            Controls.Add(btnCapture);
+            Controls.Add(lblDetails);
+            Controls.Add(btnDetect);
+            Controls.Add(btnStop);
+            Controls.Add(btnStart);
+            Controls.Add(pictureBox1);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "Form1";
+            Text = "Camera App";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load_1;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
+        private Button btnDetect;
+        private Label lblDetails;
+        private Button btnStart;
+        private Button btnCapture;
     }
 }

@@ -24,7 +24,7 @@ namespace WinCam
 
             var graphics = Graphics.FromImage(image);
 
-            foreach (var prediction in predictions) // iterate predictions to draw results
+            foreach (var prediction in predictions.OrderByDescending(x=>x.Score)) // iterate predictions to draw results
             {
                 double score = Math.Round(prediction.Score, 2);
 
