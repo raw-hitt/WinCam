@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using WinCam.Models;
 
 
-namespace WinCam
+namespace WinCam.Yolo
 {
     public class Yolov5 : IDisposable
     {
@@ -23,12 +24,12 @@ namespace WinCam
 
                 if (useCuda)
                 {
-                    Microsoft.ML.OnnxRuntime.SessionOptions opts = Microsoft.ML.OnnxRuntime.SessionOptions.MakeSessionOptionWithCudaProvider();
+                    SessionOptions opts = SessionOptions.MakeSessionOptionWithCudaProvider();
                     _inferenceSession = new InferenceSession(ModelPath, opts);
                 }
                 else
                 {
-                    Microsoft.ML.OnnxRuntime.SessionOptions opts = new Microsoft.ML.OnnxRuntime.SessionOptions();
+                    SessionOptions opts = new SessionOptions();
                     _inferenceSession = new InferenceSession(ModelPath, opts);
                 }
             }
@@ -66,7 +67,7 @@ namespace WinCam
             }
         }
 
-       
+
 
         public List<YoloPrediction> Predict(Image image, float conf_thres = 0, float iou_thres = 0)
         {
@@ -97,10 +98,10 @@ namespace WinCam
 
                     var (rect1, rect2) = (item.Rectangle, current.Rectangle);
 
-                    System.Drawing.RectangleF intersection = RectangleF.Intersect(rect1, rect2);
+                    RectangleF intersection = RectangleF.Intersect(rect1, rect2);
 
-                    float intArea = intersection.Width*intersection.Height; // intersection area
-                    float unionArea = (rect1.Width * rect1.Height) + (rect2.Width+rect2.Height) - intArea; // union area
+                    float intArea = intersection.Width * intersection.Height; // intersection area
+                    float unionArea = rect1.Width * rect1.Height + (rect2.Width + rect2.Height) - intArea; // union area
                     float overlap = intArea / unionArea; // overlap ratio
 
                     if (overlap >= _model.Overlap)
@@ -174,10 +175,10 @@ namespace WinCam
                 {
                     if (output[0, i, k] <= _model.MulConfidence) return; // skip low mul_conf results
 
-                    float xMin = ((output[0, i, 0] - output[0, i, 2] / 2) - xPad) / gain; // unpad bbox tlx to original
-                    float yMin = ((output[0, i, 1] - output[0, i, 3] / 2) - yPad) / gain; // unpad bbox tly to original
-                    float xMax = ((output[0, i, 0] + output[0, i, 2] / 2) - xPad) / gain; // unpad bbox brx to original
-                    float yMax = ((output[0, i, 1] + output[0, i, 3] / 2) - yPad) / gain; // unpad bbox bry to original
+                    float xMin = (output[0, i, 0] - output[0, i, 2] / 2 - xPad) / gain; // unpad bbox tlx to original
+                    float yMin = (output[0, i, 1] - output[0, i, 3] / 2 - yPad) / gain; // unpad bbox tly to original
+                    float xMax = (output[0, i, 0] + output[0, i, 2] / 2 - xPad) / gain; // unpad bbox brx to original
+                    float yMax = (output[0, i, 1] + output[0, i, 3] / 2 - yPad) / gain; // unpad bbox bry to original
 
                     xMin = YoloUtils.Clamp(xMin, 0, w - 0); // clip bbox tlx to boundaries
                     yMin = YoloUtils.Clamp(yMin, 0, h - 0); // clip bbox tly to boundaries
@@ -219,7 +220,7 @@ namespace WinCam
         {
             _model.Outputs = _inferenceSession.OutputMetadata.Keys.ToArray();
             _model.Dimensions = _inferenceSession.OutputMetadata[_model.Outputs[0]].Dimensions[2];
-            _model.UseDetect = !(_model.Outputs.Any(x => x == "score"));
+            _model.UseDetect = !_model.Outputs.Any(x => x == "score");
         }
 
         public void Dispose()

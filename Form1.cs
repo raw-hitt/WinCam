@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using WinCam.Yolo;
 
 
 namespace WinCam
@@ -91,10 +92,10 @@ namespace WinCam
 
             int score = Convert.ToInt32((output.Item2[0].Score) * 100);
 
-            if (output.Item1 == null || score <= 65)
+            if (output.Item1 == null || score <= 35)
             {
                 lblDetails.Text = "No objects detected in the current image";
-                pictureBox1.Image = (Bitmap)_latestImg;
+                //pictureBox1.Image = (Bitmap)_latestImg;
             }
             else
             {

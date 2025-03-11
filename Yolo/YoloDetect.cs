@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinCam.Models;
 
-namespace WinCam
+namespace WinCam.Yolo
 {
     internal class YoloDetect
     {
@@ -16,7 +17,7 @@ namespace WinCam
             yolo.SetupLabels(new string[] { "Clubs", "Dimonds", "Spades", "hearts" });
         }
 
-        internal Tuple<Image, List<YoloPrediction>> ProcessImages(System.Drawing.Image image)
+        internal Tuple<Image, List<YoloPrediction>> ProcessImages(Image image)
         {
 
             List<YoloPrediction> predictions = yolo.Predict(image);
@@ -24,7 +25,7 @@ namespace WinCam
 
             var graphics = Graphics.FromImage(image);
 
-            foreach (var prediction in predictions.OrderByDescending(x=>x.Score)) // iterate predictions to draw results
+            foreach (var prediction in predictions.OrderByDescending(x => x.Score)) // iterate predictions to draw results
             {
                 double score = Math.Round(prediction.Score, 2);
 
@@ -43,5 +44,5 @@ namespace WinCam
 
     }
 
-  
+
 }

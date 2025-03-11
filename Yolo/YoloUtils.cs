@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinCam
+namespace WinCam.Yolo
 {
-   
+
     public class YoloUtils
-    {       
+    {
         public static float[] Xywh2xyxy(float[] source)
         {
             var result = new float[4];
@@ -34,7 +34,7 @@ namespace WinCam
             var (xRatio, yRatio) = (target_width / (float)w, target_height / (float)h); // x, y ratios
             var ratio = Math.Min(xRatio, yRatio); // ratio = resized / original
             var (width, height) = ((int)(w * ratio), (int)(h * ratio)); // roi width and height
-            var (x, y) = ((target_width / 2) - (width / 2), (target_height / 2) - (height / 2)); // roi x and y coordinates
+            var (x, y) = (target_width / 2 - width / 2, target_height / 2 - height / 2); // roi x and y coordinates
             var roi = new Rectangle(x, y, width, height); // region of interest
 
             using (var graphics = Graphics.FromImage(output))
@@ -53,7 +53,7 @@ namespace WinCam
 
         public static Tensor<float> ExtractPixels(Bitmap image)
         {
-            var bitmap = (Bitmap)image;
+            var bitmap = image;
 
             var rectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             BitmapData bitmapData = bitmap.LockBits(rectangle, ImageLockMode.ReadOnly, bitmap.PixelFormat);
@@ -65,7 +65,7 @@ namespace WinCam
             {
                 Parallel.For(0, bitmapData.Height, (y) =>
                 {
-                    byte* row = (byte*)bitmapData.Scan0 + (y * bitmapData.Stride);
+                    byte* row = (byte*)bitmapData.Scan0 + y * bitmapData.Stride;
 
                     Parallel.For(0, bitmapData.Width, (x) =>
                     {
@@ -83,7 +83,7 @@ namespace WinCam
 
         public static float Clamp(float value, float min, float max)
         {
-            return (value < min) ? min : (value > max) ? max : value;
+            return value < min ? min : value > max ? max : value;
         }
     }
 }

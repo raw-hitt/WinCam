@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinCam
+namespace WinCam.Models
 {
     public class YoloPrediction
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinCam
+namespace WinCam.Models
 {
     public class YoloModel
     {
@@ -12,7 +12,7 @@ namespace WinCam
         public int Height { get; set; }
 
         public int Dimensions { get; set; }
-      
+
         public float Confidence { get; set; }
         public float MulConfidence { get; set; }
         public float Overlap { get; set; }
