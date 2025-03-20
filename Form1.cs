@@ -104,7 +104,7 @@ namespace WinCam
                 try
                 {
                     string label = output.Item2[0].Label.Name;
-                    lblDetails.Text = "Detection Score = " + score.ToString() + "and label - " + label;
+                    lblDetails.Text = "Detection Score = " + score.ToString() + " and label - " + label;
 
 
                 }
