@@ -3,18 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinCam", "WinCam.csproj", "{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinCam", "WinCam.csproj", "{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}"
+EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AISetup", "..\AISetup\AISetup.aiproj", "{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DefaultBuild|Any CPU = DefaultBuild|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}.DefaultBuild|Any CPU.ActiveCfg = Debug|Any CPU
+		{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{771D6736-E0BE-49EE-8D0F-9C3E26B44CD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}.Debug|Any CPU.Build.0 = DefaultBuild
+		{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}.DefaultBuild|Any CPU.ActiveCfg = DefaultBuild
+		{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}.DefaultBuild|Any CPU.Build.0 = DefaultBuild
+		{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{0A1D3D3A-9B76-4A96-93AE-70AB465E7DAD}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
